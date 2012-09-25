@@ -1,0 +1,21 @@
+_hlidac         = _this select 0
+_mrtvola        = _this select 1
+_realna_mrtvola = _this select 2
+
+#dokola
+?_hlidac knowsabout _mrtvola>0: goto "vidimrtvolu"
+?!alive _hlidac:exit
+?(getpos _realna_mrtvola select 1<-0.1):exit
+?alarm:exit
+~0.1
+goto "dokola"
+
+#vidimrtvolu
+
+~1+random 1
+_hlidac fire (weapons _hlidac select 0)
+_hlidac say "mandown"
+
+alarm=true
+
+exit

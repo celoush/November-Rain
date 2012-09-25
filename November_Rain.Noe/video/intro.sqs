@@ -1,0 +1,97 @@
+SetAccTime 1
+0 fademusic 0
+playmusic["skladba1",0]
+5 fademusic 1.2
+
+_camera = "camera" CamCreate [0,0,0] 
+_camera CameraEffect ["Internal","Back"]
+_camera CamSetFOV 0.700
+_camera CamCommit 0
+
+; konvoj
+;=== 16:19:36
+_camera camSetTarget [95325.01,-33217.91,25.11]
+_camera camSetPos [3364.92,6061.06,0.47]
+_camera camSetFOV 0.700
+_camera camCommit 0
+@camCommitted _camera
+TitleCut["","BLACK IN",8]
+;=== 16:19:46
+_camera camSetTarget [95325.01,-33217.91,25.22]
+_camera camSetPos [3395.24,6049.80,0.87]
+_camera camSetFOV 0.700
+_camera camCommit 18
+~16.8
+TitleCut["","BLACK OUT",1]
+~1
+TitleCut["","BLACK IN",1]
+;=== 16:21:51
+_camera camSetTarget [-96346.16,8580.77,30.81]
+_camera camSetPos [3616.16,6043.36,0.53]
+_camera camSetFOV 0.700
+_camera camCommit 0
+@camCommitted _camera
+~2
+;=== 16:22:00
+_camera camSetTarget [-96346.16,8580.77,30.86]
+_camera camSetPos [3621.29,6043.22,0.35]
+_camera camSetFOV 0.700
+_camera camCommit 5
+@camCommitted _camera
+~1.5
+; shilka
+;=== 16:26:48
+_camera camSetTarget [-46026.88,-77078.91,23264.53]
+_camera camSetPos [2254.34,7372.85,0.05]
+_camera camSetFOV 0.700
+_camera camCommit 0
+@camCommitted _camera
+~2
+;=== 16:26:59
+_camera camSetTarget [-47356.30,-79404.13,-2424.48]
+_camera camSetPos [2263.03,7381.19,1.94]
+_camera camSetFOV 0.700
+_camera camCommit 5
+@camCommitted _camera
+~1
+;=== 16:27:51
+_camera camSetTarget [-94422.23,-15036.23,-12059.84]
+_camera camSetPos [2272.54,7376.56,1.07]
+_camera camSetFOV 0.700
+_camera camCommit 4
+@camCommitted _camera
+
+; neco ukaze
+a switchmove "CommandForward"
+~2
+b domove getpos to
+~0.2
+a domove getpos to
+~2
+
+TitleCut["","BLACK OUT",1]
+~1
+TitleCut["","BLACK IN",1]
+
+;=== 16:28:00
+_camera camSetTarget [-94108.41,31084.61,-12059.14]
+_camera camSetPos [2275.89,7369.93,0.99]
+_camera camSetFOV 0.700
+_camera camCommit 0
+@camCommitted _camera
+
+;=== 16:28:05
+_camera camSetTarget [-85689.64,29013.00,-42244.73]
+_camera camSetPos [2290.42,7363.77,12.61]
+_camera camSetFOV 0.700
+_camera camCommit 5
+TitleCut["","BLACK OUT",5]
+~5
+titleRsc ["titlesceloush", "PLAIN"]
+~7
+titleRsc ["titlesuvadi", "PLAIN"]
+~6
+TitleRsc ["titlesorb", "PLAIN"]
+12 fademusic 0
+~11
+konec=true

@@ -1,0 +1,4 @@
+#dokola
+~1
+cas = cas + 1
+goto "dokola"

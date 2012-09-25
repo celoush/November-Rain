@@ -1,0 +1,18 @@
+?!alive scud1:exit
+scudodpalovac1 moveindriver scud1
+~1
+?!alive scud1:exit
+scud1 domove getpos fabrika
+~25
+?!alive scud1:exit
+?scud1 distance fabrika > 10: scud1 setpos getpos fabrika
+~30
+?!alive scud1:exit
+scud1 action ["SCUD Launch"] 
+~20+random 10
+?!alive scud1:exit
+scud1 action ["SCUD Start"]
+fucking_end = true
+~5
+nahradnivlk sidechat Localize "STR_SJ_SCUD_FIRE"
+exit

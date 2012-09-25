@@ -1,0 +1,56 @@
+SetAccTime 1
+0 fademusic 0
+playmusic["skladba1",310]
+10 fademusic 2
+
+_camera = "camera" CamCreate [0,0,0] 
+_camera CameraEffect ["Internal","Back"]
+_camera CamSetFOV 0.700
+_camera CamCommit 0
+
+TitleCut["","BLACK IN",2]
+
+;=== 15:04:16
+_camera camSetTarget [-35872.68,-77763.18,33194.77]
+_camera camSetPos [7272.77,6164.33,0.05]
+_camera camSetFOV 0.793
+_camera camCommit 0
+
+~3
+
+;=== 15:05:23
+_camera camSetTarget [4219.04,-91082.56,23230.96]
+_camera camSetPos [7268.46,6160.41,1.92]
+_camera camSetFOV 1.016
+_camera camCommit 0
+@camCommitted _camera
+~2
+scud action ["SCUD Launch"]
+~2
+;=== 15:05:31
+_camera camSetTarget [4601.63,-78882.01,-52422.78]
+_camera camSetPos [7268.46,6160.41,11.73]
+_camera camSetFOV 1.016
+_camera camCommit 7
+~7
+
+@camCommitted _camera
+;=== 15:04:34
+_camera camSetTarget [-67149.21,57537.37,-42540.01]
+_camera camSetPos [7278.40,6147.87,11.38]
+_camera camSetFOV 1.016
+_camera camCommit 0
+@camCommitted _camera
+;=== 15:04:50
+_camera camSetTarget [-59556.25,52294.72,-58206.14]
+_camera camSetPos [7319.56,6119.42,61.96]
+_camera camSetFOV 1.016
+_camera camCommit 18
+~6
+scud action ["SCUD Start"]
+~8
+TitleCut[Localize "STR_OUTRO_pokracovani_priste","WHITE OUT",4]
+~2
+8 fademusic 0
+~8
+konec=true

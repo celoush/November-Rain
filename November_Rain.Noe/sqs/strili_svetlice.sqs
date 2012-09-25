@@ -1,0 +1,12 @@
+strelec setpos getpos pozicestrelec
+
+removeallweapons strelec
+strelec addweapon "M16GrenadeLauncher"
+
+#dokola
+?!alive strelec:exit
+strelec setdir (220+random 15)
+strelec addmagazine "FlareRed"
+strelec fire ["M203Muzzle", "FlareRed", "FlareRed"]
+~10+random 10
+goto "dokola"

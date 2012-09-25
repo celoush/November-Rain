@@ -1,0 +1,14 @@
+; udela z vojaka raketometcika s HK
+removeallweapons _this
+_this addmagazine "HK"
+_this addweapon "HK"
+_this addmagazine "HK"
+_this addmagazine "HK"
+_this addmagazine "HK"
+_this addmagazine "HK"
+_this addweapon "NVGoggles"
+_this addmagazine "HandGrenade"
+_this addmagazine "HandGrenade"
+_this addmagazine "LAWLauncher"
+_this addweapon "LAWLauncher"
+exit

@@ -1,0 +1,217 @@
+; nejdrive cekam na poplach
+; bud doslo ke zniceni scudu nebo k odhaleni nepritele ci mrtvoly ci strelbe obecne
+
+; vybava pro hrace
+
+removeallweapons a10
+a10 addmagazine "ZuniLauncher38"
+a10 addmagazine "MachineGun30W"
+
+removeallweapons player
+player addmagazine "HK"
+player addweapon "HK"
+player addmagazine "HK"
+player addmagazine "HK"
+player addmagazine "HK"
+player addmagazine "PipeBomb"
+player addmagazine "PipeBomb"
+player addmagazine "PipeBomb"
+player addweapon "Binocular"
+player addweapon "NVGoggles"
+
+{_x setbehaviour "SAFE"} foreach hlidka
+{_x setspeedmode "LIMITED"} foreach hlidka
+a10 flyinheight 100
+
+~10
+
+;goto "faze3"
+
+[] exec "sqs\kontrola_alarmu.sqs"
+[] exec "sqs\odpocet_alarmu.sqs"
+
+~2
+whq sidechat Localize "STR_WHQ_START" 
+~7
+player sidechat Localize "STR_SJ_START_ANSWER" 
+
+
+
+#faze1
+; ------------------------------------------------------
+; ceka se na alarm, ten zpusobi bud predcasne odhaleni nepritelem nebo zniceni nepratelskeho scudu
+
+@alarm
+setacctime 1
+playsound "alarm"
+
+; -------------- mezifaze nalet na tovarnu -------------
+
+?!alive scud1: "1" ObjStatus "DONE";"2" ObjStatus "DONE";goto "faze2"
+"1" ObjStatus "FAILED"
+
+{_x setcombatmode "RED"} foreach hlidka
+{_x setbehaviour "COMBAT"} foreach hlidka
+{_x reveal player} foreach hlidka
+{_x domove getpos player} foreach hlidka
+~2
+{_x setunitpos "UP"} foreach hlidka
+
+~3
+setacctime 1
+player sidechat Localize "STR_SJ_ALARM"
+~5 
+setacctime 1
+whq sidechat Localize "STR_WHQ_ALARM_ANSWER" 
+~10
+titleCut ["","BLACK OUT",2]
+~2
+
+cas = 0
+[] exec "sqs\casovac.sqs";
+; ------- faze nalet na tovarnu ------------------------
+playmusic["skladba1",407]
+3 fademusic 1
+player setidentity "letec"
+?vehicle player!=player:unassignvehicle player;player action ["eject",vehicle player]
+player setdammage 0
+removeallweapons player
+player addmagazine "Beretta" 
+player addweapon "Beretta" 
+player addmagazine "Beretta" 
+player addmagazine "Beretta" 
+player addmagazine "Beretta"
+player addmagazine "SmokeShellRed" 
+player addmagazine "SmokeShellGreen" 
+a10 setpos [getpos pozicea10 select 0,getpos pozicea10 select 1,100]
+unassignvehicle a10driver 
+a10driver action ["eject",a10]
+vehicle a10driver setpos [0,0,0]
+a10driver setpos [0,0,0]
+player moveindriver a10
+
+[] exec "sqs\aktivuj_scud1.sqs"
+gunner moveingunner a10
+~2
+titleCut ["","BLACK IN",2]
+gunner moveingunner a10
+
+setacctime 1
+player sidechat Localize "STR_AIR_ALARM_ANSWER"
+
+
+#kontrola_faze1
+~1
+?!alive scud1: goto "faze2";
+?!canmove a10: goto "faze1failed"
+?!canfire a10: goto "faze1failed"
+?fucking_end: goto "faze1failed"
+goto "kontrola_faze1"
+
+
+#faze2
+
+
+setacctime 1
+player sidechat Localize "STR_SJ_SCUD_DOWN"
+"2" ObjStatus "DONE"
+~2 
+setacctime 1
+whq sidechat Localize "STR_WHQ_SCUD_DOWN_ANSWER"
+titleCut ["","BLACK OUT",3]
+~3
+
+
+goto "faze3"
+
+; -------- faze nalet na dalsi pripadny scud ------------
+fucking_end = true
+#faze1failed
+"2" ObjStatus "FAILED"
+~5
+prohra = true
+
+exit
+
+
+; -------- vysadek u Mirova ------------------------------
+#faze3
+
+vysadek = true
+
+?vehicle player!=uh2:unassignvehicle player;player action ["eject",vehicle player]
+player setdammage 0
+
+player setidentity "vojak"
+player exec "sqs\raketometcik.sqs"
+player addweapon "Binocular"
+
+[player] join group velitel2
+player moveincargo uh2
+{_x moveincargo uh1} foreach units velitel1
+group velitel1 allowFleeing 0 
+{_x moveincargo uh2} foreach units velitel2 
+group velitel2 allowFleeing 0 
+{_x moveincargo uh3} foreach units velitel3 
+group velitel3 allowFleeing 0 
+uh1 setpos [getpos poziceuh1 select 0, getpos poziceuh1 select 1,100]
+uh1 flyinheight 100 
+uh2 setpos [getpos poziceuh2 select 0, getpos poziceuh2 select 1,80] 
+uh2 flyinheight 80 
+uh3 setpos [getpos poziceuh3 select 0, getpos poziceuh3 select 1,120] 
+uh3 flyinheight 120 
+?vehicle player==uh2:goto "kontrola_konec"
+unassignvehicle player
+player action ["eject",vehicle player]
+~0.5
+player moveincargo uh2
+#kontrola_konec
+nahradnivlk moveindriver a10
+a10 domove [0,0,0]
+~1
+titleCut ["","BLACK IN",2] 
+
+player moveincargo uh2
+setacctime 1
+whq sidechat Localize "STR_WHQ_TRANS_GO" 
+~5
+setacctime 1
+uh1 sidechat Localize "STR_TRANS_READY"
+~8
+setacctime 1
+vehicle velitel2 sidechat Localize "STR_CMD_READY"
+
+@vehicle player==player
+5 fademusic 0
+
+; bez ohledu na to, zda stihaj ci ne se povoli utok
+~120+random 20
+[] exec "sqs\strili_svetlice.sqs"
+utok = true
+playmusic["skladba1",305]
+5 fademusic 1
+
+setacctime 1
+whq sidechat Localize "STR_WHQ_ATTACK"
+~5
+30 fademusic 0
+setacctime 1
+vehicle velitel2 sidechat Localize "STR_CMD_ATTACK_ANSWER"
+~60
+a10 domove getpos mirov
+
+@mirov_cisty
+setacctime 1
+playmusic["skladba1",210]
+5 fademusic 1
+
+
+setacctime 1
+player sidechat Localize "STR_PLAYER_MIROV_CLEAR"
+"3" ObjStatus "DONE"
+~7
+whq sidechat Localize "STR_WHQ_MIROV_CLEAR_ANSWER" 
+~15
+konec_mise = true
+
+exit

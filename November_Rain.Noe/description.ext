@@ -1,0 +1,231 @@
+showCompass=1;
+showNotepad=1;
+showGPS=0;
+disabledAI=true;
+OnLoadMission =$STR_MISS_LOAD
+
+class CfgIdentities {
+  class hrac {
+    name = $STR_WILL_PLAYER;
+    face = "face10";
+    glasses = "none";
+    speaker = "Marc";
+    pitch = 1.0500;
+  };
+  class letec {
+    name = $STR_WILL_PILOT;
+    face = "face15";
+    glasses = "none";
+    speaker = "Marc";
+    pitch = 1.2500;
+  };  
+  class vojak {
+    name = $STR_WILL_VOJAK;
+    face = "face13";
+    glasses = "none";
+    speaker = "Marc";
+    pitch = 1.1500;
+  };  
+};
+
+class CfgMusic {
+	tracks[]= {skladba1};
+	class skladba1 {
+		name="skladba1"
+		sound[]={\music\skladba1.ogg, db + 0, 1.0};
+	};
+};
+
+
+class CfgSounds {
+	sounds[] = {alarm,contact,mandown,skladba1};
+	class alarm {
+			name="alarm";
+			sound[] = {\sounds\alarm.ogg, db+0, 1.0};
+			titles[]={};
+	};
+	class contact {
+			name="contact";
+			sound[] = {\sounds\contact.ogg, db+0, 1.0};
+			titles[]={};
+	};
+	class mandown {
+			name="mandown";
+			sound[] = {\sounds\mandown.ogg, db+0, 1.0};
+			titles[]={};
+	};
+	class skladba1 {
+			name="skladba1";
+			sound[] = {\music\skladba1.ogg, db+0, 1.0};
+			titles[]={};
+	};
+};
+
+// ---------------- Definice písma -----------------
+// --- Není nutné - Lze použít pøímo názvù písem ---
+#define FontS "tahomaB24"
+#define FontM "tahomaB36"
+#define FontHTML "courierNewB64"
+#define FontHTMLBold "courierNewB64"
+#define FontMAP "courierNewB64"
+#define FontMAIN "SteelfishB64"
+#define FontMAINCZ "SteelfishB64CE"
+#define FontTITLE "SteelfishB128"
+#define FontTITLEHalf "SteelfishB64"
+#define FontBOOK "garamond64"
+#define FontNOTES "AudreysHandI48"
+
+// ---------------- Definice typù objektù ----------
+// --- Není nutné - Lze použít pøímo èísla typu  ---
+#define CT_STATIC		0
+
+#define ST_CENTER		2
+#define ST_MULTI		16
+#define ST_SHADOW		256
+#define ST_NO_RECT		512
+
+// ------------ Základní tøídy ----------------
+class RscPicture 
+{ 
+	type=0; 
+	idc=-1; 
+	style=48; 
+	colorBackground[]={0,0,0,1}; 
+	colorText[]={1,1,1,1}; 
+	font="tahomaB24"; 
+	size=0; 
+}; 
+
+class RscText
+{
+	type=0
+	idc=4294967295
+	style=0
+	h=0.040000;
+	colorBackground[]={0,0,0,0};
+	colorText[]={0.780000,0.080000,0.520000,0.750000};
+	font="tahomaB24";
+	sizeEx=0.020000;
+};
+
+class RscBackground
+{
+	type=CT_STATIC
+	idc=-1
+	style=ST_3D_BORDER
+	x=0.150000;
+	y=0.150000;
+	w=0.700000;
+	h=0.700000;
+	text="";
+	colorBackground[]={1,1,1,1};
+	colorText[]={1,0,1,0};
+	font="tahomaB24";
+	sizeEx=0
+};
+
+// ----------------- Tøídy titulkù -------------------
+class RscTitles 
+{ 
+	titles[] = 
+	{
+
+		titlesorb,
+		titlesceloush,
+		titlesuvadi,
+		titleskonec,
+	};
+
+	class titlesorb
+	{
+		name = "";
+		duration = 6;
+		idd = -1;
+		movingEnable = false;
+		
+		controls[]= {text};
+
+		class text: RscText
+		{
+			style = ST_MULTI + ST_CENTER + ST_NO_RECT;
+			lineSpacing = 1.0;
+			text = $STR_title3;
+			x = 0.17; y = 0.4; w = 0.66; h = 0.1;
+			colorText[] = {0, 0.5, 0, 1};
+			font = SteelfishB128;
+			sizeEx = 0.25;
+			size = 1.1;
+		};
+
+	};
+
+	class titleskonec
+	{
+		name = "";
+		duration = 6;
+		idd = -1;
+		movingEnable = false;
+		
+		controls[]= {text};
+
+		class text: RscText
+		{
+			style = ST_MULTI + ST_CENTER + ST_NO_RECT;
+			lineSpacing = 1.0;
+			text = $STR_title4;
+			x = 0.17; y = 0.4; w = 0.66; h = 0.1;
+			colorText[] = {0, 0.5, 0, 1};
+			font = SteelfishB128;
+			sizeEx = 0.25;
+			size = 1.1;
+		};
+
+	};
+
+	class titlesceloush
+	{
+		name = "";
+		duration = 6;
+		idd = -1;
+		movingEnable = false;
+		
+		controls[]= {text};
+
+		class text: RscText
+		{
+			style = ST_MULTI + ST_CENTER + ST_NO_RECT;
+			lineSpacing = 1.0;
+			text = $STR_title1;
+			x = 0.17; y = 0.4; w = 0.66; h = 0.1;
+			colorText[] = {0, 0.5, 0, 1};
+			font = SteelfishB128;
+			sizeEx = 0.25;
+			size = 0.7;
+		};
+
+	};
+
+	class titlesuvadi
+	{
+		name = "";
+		duration = 6;
+		idd = -1;
+		movingEnable = false;
+		
+		controls[]= {text};
+
+		class text: RscText
+		{
+			style = ST_MULTI + ST_CENTER + ST_NO_RECT;
+			lineSpacing = 1.0;
+			text = $STR_title2;
+			x = 0.17; y = 0.4; w = 0.66; h = 0.1;
+			colorText[] = {0, 0.5, 0, 1};
+			font = SteelfishB128;
+			sizeEx = 0.25;
+			size = 0.7;
+		};
+
+	};
+
+};

@@ -1,0 +1,9 @@
+; cekam dokud si ho nekdo nevsimne
+{_x exec "sqs\hledej_hrace.sqs"} foreach hlidka
+{_x exec "sqs\hlidej_mrtvolu.sqs"} foreach hlidka
+{_x addeventhandler ["fired",{_x exec "sqs\vystrel_hlidky.sqs"}]} foreach hlidka
+
+[] exec "sqs\kontrola_scudu.sqs";
+
+
+exit

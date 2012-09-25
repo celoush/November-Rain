@@ -1,0 +1,31 @@
+onBriefingGear "skladba1"
+onBriefingGroup "skladba1"
+onBriefingNotes "skladba1"
+onBriefingPlan "skladba1"
+
+0 setfog (random 0.1)
+setviewdistance (1000+random 500)
+player setidentity "hrac"
+whq=[WEST,"HQ"]
+
+; inicializace promennych
+
+a10driver moveindriver a10
+a10gunner moveindriver a10
+
+big_boss addeventhandler ["killed",{_this select 1 sidechat localize "STR_KILL_BOSS"}]
+bvp addeventhandler ["killed",{_this select 1 sidechat localize "STR_KILL_BVP"}]
+;t55 addeventhandler ["hit",{_this select 1 sidechat localize "STR_HIT_T55"}]
+t55 addeventhandler ["killed",{_this select 1 sidechat localize "STR_KILL_T55"}]
+
+hlidka = [hlidka1,hlidka2,hlidka3,hlidka4,hlidka5,hlidka6,hlidka7,hlidka8,hlidka9,hlidka10,hlidka11,hlidka12]
+
+[] exec "stav.sqs"
+
+titleCut ["","BLACK IN",3]
+
+0 fademusic 1.1
+playmusic["skladba1",0]
+30 fademusic 0
+
+exit

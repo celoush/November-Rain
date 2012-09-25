@@ -1,0 +1,14 @@
+; na akci bude mit vlk priblizne 8-12 minut, dle nahody 
+_sekund = 0
+_celkem = 480+random 240
+
+#dokola
+~1
+_sekund = _sekund + 1
+?alarm:exit
+?_sekund>_celkem: goto "konec"
+goto "dokola"
+
+#konec
+alarm=true
+exit

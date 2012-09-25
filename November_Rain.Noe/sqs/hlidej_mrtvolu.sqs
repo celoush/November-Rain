@@ -1,0 +1,14 @@
+#dokola
+?!alive _this: goto "jetuhej"
+?alarm:exit
+~1
+goto "dokola"
+
+#jetuhej
+
+_hrob = "Grave" createVehicle[0,0,1000]
+_hrob setpos [getpos _this select 0, getpos _this select 1,-0.5]
+
+{[_x,_hrob,_this] exec "sqs\hledej_mrtvolu.sqs"} foreach hlidka
+
+exit

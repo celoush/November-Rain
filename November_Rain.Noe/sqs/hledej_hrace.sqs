@@ -1,0 +1,9 @@
+@_this knowsabout hrac > 0
+?alarm:exit
+~1 + random 1.8
+?!alive _this:exit
+_this fire (weapons _this select 0)
+_this say "contact"
+~2 + random 2
+alarm = true
+exit
